@@ -33,9 +33,9 @@ path {
   初期設定：変数
 ------------------------------ */
 
-var width = 600;
-var height = 300;
-var margin = 50;
+var myWidth = 600;
+var myHeight = 300;
+var myMargin = 50;
 
 
 
@@ -43,7 +43,7 @@ var margin = 50;
   データの読み込み
 ------------------------------ */
 
-var myData = [50, 70, 100, 30, 70, 60, 120];
+var myData = [50, 70, 100, 30, 90, 60, 120];
 
 
 
@@ -52,12 +52,12 @@ var myData = [50, 70, 100, 30, 70, 60, 120];
 ------------------------------ */
 
 var svgContainer = d3.select('#container').append('svg')
-    .attr('width', width)
-    .attr('height', height);
+    .attr('width', myWidth)
+    .attr('height', myHeight);
 
 var axisContainer = svgContainer.append("g")
     .attr("class", "x-axis")
-    .attr("transform", "translate(0, " + (height - margin) + ")");
+    .attr("transform", "translate(0, " + (myHeight - myMargin) + ")");
 
 var chartContainer = svgContainer.append("g")
     .attr("class", "chart")
@@ -71,7 +71,7 @@ var chartContainer = svgContainer.append("g")
 
 var xScale = d3.scale.linear()
     .domain([d3.min(myData), d3.max(myData)])
-    .range([margin, width - margin]);
+    .range([myMargin, myWidth - myMargin]);
 
 
 
@@ -104,7 +104,7 @@ circlesGroup.enter()
           return xScale(d);
     })
     .attr("cy", function() {
-          return (height-margin)/2;
+          return (myHeight - myMargin)/2 + myMargin/2;
     })
     .style("fill", "#F00");
 
@@ -120,7 +120,7 @@ d3.selectAll("g.x-axis g.tick")
     .attr("x1", 0)
     .attr("y1", 0)
     .attr("x2", 0)
-    .attr("y2", -1 * (height) );
+    .attr("y2", -1 * myHeight + myMargin * 2);
 </script>
 
 </body>
